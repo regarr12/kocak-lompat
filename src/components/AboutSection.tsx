@@ -1,89 +1,110 @@
-import { motion } from 'framer-motion';
-import { Code2, Video, Coffee, Rocket } from 'lucide-react';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronLeft, ChevronRight, Cake, GraduationCap, Waves, Heart } from 'lucide-react';
 
-export default function AboutSection() {
-  const stats = [
-    { icon: Code2, value: '50+', label: 'Projects Selesai' },
-    { icon: Video, value: '100+', label: 'Video Konten' },
-    { icon: Coffee, value: '1000+', label: 'Cangkir Kopi' },
-    { icon: Rocket, value: '5+', label: 'Tahun Pengalaman' },
-  ];
+const personalStories = [
+  {
+    id: 1,
+    icon: <Cake className="w-8 h-8 text-primary" />,
+    title: "Latar Belakang",
+    description: "Saya lahir pada tanggal 11 Juli 2010. Sebagai individu yang lahir di pertengahan tahun, saya selalu membawa semangat baru dalam setiap langkah perjalanan hidup saya.",
+    tag: "Kelahiran"
+  },
+  {
+    id: 2,
+    icon: <GraduationCap className="w-8 h-8 text-primary" />,
+    title: "Pendidikan",
+    description: "Saat ini saya menempuh pendidikan di MAN 1 Banda Aceh, kelas X-4. Saya bertekad untuk rajin belajar demi mencapai masa depan yang indah dan membanggakan kedua orang tua.",
+    tag: "Akademik"
+  },
+  {
+    id: 3,
+    icon: <Waves className="w-8 h-8 text-primary" />,
+    title: "Hobi",
+    description: "Berenang bukan sekadar aktivitas bagi saya, melainkan hobi yang sangat saya cintai. Olahraga ini mengajarkan saya ketenangan dan kedisiplinan.",
+    tag: "Lifestyle"
+  },
+  {
+    id: 4,
+    icon: <Heart className="w-8 h-8 text-primary" />,
+    title: "Visi & Harapan",
+    description: "Fokus utama saya adalah menjadi anak yang bisa diandalkan. Belajar dengan giat adalah kunci utama saya untuk membuka pintu kesuksesan di masa depan.",
+    tag: "Masa Depan"
+  },
+];
+
+export default function BiographyCarousel() {
+  const [index, setIndex] = useState(0);
+
+  const nextSlide = () => {
+    setIndex((prev) => (prev === personalStories.length - 1 ? 0 : prev + 1));
+  };
+
+  const prevSlide = () => {
+    setIndex((prev) => (prev === 0 ? personalStories.length - 1 : prev - 1));
+  };
 
   return (
-    <section id="about" className="py-20 md:py-32 bg-muted/30">
-      <div className="container mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <span className="text-primary font-medium mb-2 block">Tentang Saya</span>
-          <h2 className="font-display text-3xl md:text-5xl font-bold mb-4">
-            Mengenal Lebih Dekat
-          </h2>
-          <div className="w-20 h-1 bg-primary mx-auto rounded-full" />
-        </motion.div>
-
-        <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="relative">
-              <div className="aspect-square rounded-2xl overflow-hidden glass shadow-card">
-                <div className="w-full h-full bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
-                  <span className="text-8xl">👨‍💻</span>
-                </div>
+    <section className="py-12 bg-transparent">
+      <div className="container mx-auto px-4 max-w-4xl">
+        <div className="relative group">
+          
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.4 }}
+              className="glass p-8 md:p-12 rounded-3xl shadow-card border border-white/20 min-h-[320px] flex flex-col justify-center items-center text-center"
+            >
+              <div className="mb-6 p-4 bg-primary/10 rounded-2xl ring-1 ring-primary/20">
+                {personalStories[index].icon}
               </div>
-              <div className="absolute -bottom-6 -right-6 p-4 glass rounded-xl shadow-card">
-                <p className="font-display font-bold text-2xl text-gradient">5+ Tahun</p>
-                <p className="text-sm text-muted-foreground">Pengalaman</p>
-              </div>
-            </div>
-          </motion.div>
+              
+              <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider mb-4">
+                {personalStories[index].tag}
+              </span>
 
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="space-y-6"
-          >
-            <h3 className="font-display text-2xl md:text-3xl font-bold">
-              Passionate Developer &amp; Creator
-            </h3>
-            <p className="text-muted-foreground leading-relaxed">
-              Saya adalah seorang Fullstack Web Developer dengan passion yang kuat dalam menciptakan 
-              solusi digital yang inovatif. Dengan pengalaman lebih dari 5 tahun, saya telah 
-              membantu berbagai klien dan perusahaan dalam mewujudkan ide-ide mereka menjadi 
-              aplikasi web yang powerful dan user-friendly.
-            </p>
-            <p className="text-muted-foreground leading-relaxed">
-              Selain coding, saya juga aktif sebagai Content Creator, berbagi pengetahuan 
-              tentang pemrograman dan teknologi melalui berbagai platform. Saya percaya bahwa 
-              berbagi ilmu adalah cara terbaik untuk terus belajar dan berkembang.
-            </p>
-            <div className="grid grid-cols-2 gap-4 pt-4">
-              {stats.map((stat, index) => (
-                <motion.div
-                  key={stat.label}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: index * 0.1 }}
-                  className="p-4 glass rounded-xl text-center hover:shadow-card-hover transition-shadow"
-                >
-                  <stat.icon className="h-6 w-6 text-primary mx-auto mb-2" />
-                  <p className="font-display text-2xl font-bold">{stat.value}</p>
-                  <p className="text-sm text-muted-foreground">{stat.label}</p>
-                </motion.div>
+              <h3 className="font-display text-2xl md:text-3xl font-bold mb-4">
+                {personalStories[index].title}
+              </h3>
+              
+              <p className="text-muted-foreground leading-relaxed max-w-2xl text-lg">
+                "{personalStories[index].description}"
+              </p>
+            </motion.div>
+          </AnimatePresence>
+
+          {/* Navigasi */}
+          <div className="flex justify-center items-center gap-6 mt-8">
+            <button
+              onClick={prevSlide}
+              className="p-3 rounded-full glass hover:bg-primary hover:text-white transition-all shadow-card"
+            >
+              <ChevronLeft size={24} />
+            </button>
+
+            <div className="flex gap-2">
+              {personalStories.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setIndex(i)}
+                  className={`h-2 rounded-full transition-all duration-300 ${
+                    i === index ? "w-8 bg-primary" : "w-2 bg-primary/20"
+                  }`}
+                />
               ))}
             </div>
-          </motion.div>
+
+            <button
+              onClick={nextSlide}
+              className="p-3 rounded-full glass hover:bg-primary hover:text-white transition-all shadow-card"
+            >
+              <ChevronRight size={24} />
+            </button>
+          </div>
+
         </div>
       </div>
     </section>
