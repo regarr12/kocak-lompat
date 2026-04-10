@@ -19,19 +19,19 @@ const contactInfo = [
   {
     icon: Mail,
     label: 'Email',
-    value: 'hello@developer.com',
-    href: 'mailto:hello@developer.com',
+    value: 'fadhilasqarsiregar31@gmail.com',
+    href: 'mailto:fadhilasqarsiregar31@gmail.com',
   },
   {
     icon: Phone,
     label: 'Telepon',
-    value: '+62 812 3456 7890',
-    href: 'tel:+6281234567890',
+    value: '+62 853-8196-2856',
+    href: 'tel:+62 853-8196-2856',
   },
   {
     icon: MapPin,
     label: 'Lokasi',
-    value: 'Jakarta, Indonesia',
+    value: 'Banda Aceh, Indonesia',
     href: '#',
   },
 ];
@@ -126,12 +126,12 @@ export default function ContactSection() {
           >
             <div>
               <h3 className="font-display text-2xl font-bold mb-4">
-                Mari Berkolaborasi!
+                Let's Collaborate!!
               </h3>
               <p className="text-muted-foreground leading-relaxed">
                 Punya project menarik atau ingin berkolaborasi? Jangan ragu untuk 
                 menghubungi saya. Saya selalu terbuka untuk diskusi tentang project 
-                baru, ide kreatif, atau kesempatan untuk menjadi bagian dari visi Anda.
+                baru, ide kreatif, atau kesempatan untuk menjadi bagian rencana-rencana anda.
               </p>
             </div>
 
